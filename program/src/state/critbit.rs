@@ -52,10 +52,11 @@ impl LeafNode {
 
     /// Parse a leaf node's price
     pub fn price(&self) -> u64 {
-        // #[cfg(not(target_arch = "aarch64"))]
-        // Self::price_from_key(self.key)
-        // #[cfg(target_arch = "aarch64")]
-        Self::price_from_key(self.order_id())
+        #[cfg(not(target_arch = "aarch64"))]
+        let res = Self::price_from_key(self.key);
+        #[cfg(target_arch = "aarch64")]
+        let res = Self::price_from_key(self.order_id());
+        res
     }
 
     /// Get the associated order id
