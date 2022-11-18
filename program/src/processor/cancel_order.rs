@@ -2,17 +2,22 @@
 
 use bonfida_utils::{BorshSize, InstructionsAccount};
 use borsh::{BorshDeserialize, BorshSerialize};
-use solana_program::{account_info::{next_account_info, AccountInfo}, entrypoint::ProgramResult, msg, program_error::ProgramError, pubkey::Pubkey};
+use solana_program::{
+    account_info::{next_account_info, AccountInfo},
+    entrypoint::ProgramResult,
+    program_error::ProgramError,
+    pubkey::Pubkey,
+};
 
 use crate::{
     error::AoError,
     orderbook::{OrderBookState, OrderSummary},
     state::{
-        get_side_from_order_id, EventQueue, EventQueueHeader, MarketState, EVENT_QUEUE_HEADER_LEN,
+        get_side_from_order_id, Event, EventQueue, EventQueueHeader, MarketState,
+        EVENT_QUEUE_HEADER_LEN,
     },
     utils::{check_account_key, check_account_owner, check_signer, fp32_mul},
 };
-use crate::state::Event;
 
 #[derive(BorshDeserialize, BorshSerialize, Clone, BorshSize)]
 /**

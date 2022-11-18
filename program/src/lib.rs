@@ -64,4 +64,4 @@ pub(crate) mod processor;
 /// Utility functions
 pub mod utils;
 
-declare_id!("aaobKniTtDGvCZces7GH5UReLYP671bBkB96ahr9x3e");
+declare_id!("DchhQ6g8LyRCM5mnao1MAg3g9twfqBbDmUWgpQpFfn1b");
