@@ -122,7 +122,7 @@ pub fn process<'a, 'b: 'a>(
     let out_event = Event::Out {
         side,
         order_id: params.order_id,
-        base_size: total_base_qty,
+        base_size: 0,
         callback_info,
         delete: true,
     };
