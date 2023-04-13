@@ -112,6 +112,9 @@ impl MarketState {
     pub fn get<'a, 'b: 'a>(
         account_info: &'a AccountInfo<'b>,
     ) -> Result<RefMut<'a, Self>, ProgramError> {
+        if account_info.data.borrow().len() != MARKET_STATE_LEN {
+            return Err(ProgramError::InvalidAccountData);
+        };
         let a = Self::get_unchecked(account_info);
         if a.tag != AccountTag::Market as u64 {
             return Err(ProgramError::InvalidAccountData);
