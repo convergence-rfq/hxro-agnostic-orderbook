@@ -49,6 +49,9 @@ pub enum Side {
     Ask,
 }
 
+unsafe impl Pod for Side {}
+unsafe impl Zeroable for Side {}
+
 impl Side {
     /// Helper function to get the opposite side.
     pub fn opposite(&self) -> Self {
@@ -386,7 +389,11 @@ impl<'a> EventQueue<'a> {
                 msg!(
                     "Wrote Fill Event [taker_side: {} maker_order_id: {} quote_size: {} \
                         base_size: {} maker_callback_info: {} taker_callback_info: {}]",
-                    if taker_side == Side::Bid { "bid" } else { "ask" },
+                    if taker_side == Side::Bid {
+                        "bid"
+                    } else {
+                        "ask"
+                    },
                     maker_order_id,
                     quote_size,
                     base_size,
